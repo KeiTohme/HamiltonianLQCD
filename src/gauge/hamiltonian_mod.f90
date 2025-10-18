@@ -109,9 +109,12 @@ contains
         type(su_n_matrix) :: U_plaq, temp
         complex(dp) :: trace_plaq
         
-        ! Get neighbor sites (check if lattice has forward/backward structure)
-        if (size(lattice(site)%neighbors, 2) < 2) then
-            ! Hexagonal or other non-standard lattice - use simplified plaquette
+        ! Check if this is a square lattice (plaquettes are well-defined for square lattices)
+        if (.not. is_square_lattice) then
+            ! For hexagonal or other non-square lattices, plaquette calculation needs
+            ! special treatment. For now, return a placeholder value.
+            ! TODO: Implement proper hexagonal lattice plaquette calculation
+            ! which would involve triangular plaquettes instead of square ones
             plaq_value = 1.0_dp
             return
         end if

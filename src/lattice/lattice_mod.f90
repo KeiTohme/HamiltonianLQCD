@@ -16,6 +16,9 @@ module lattice_mod
     ! Lattice structure
     type(lattice_site), allocatable :: lattice(:)
     
+    ! Lattice type flag for efficient checking
+    logical :: is_square_lattice
+    
 contains
 
     ! ==========================================================================
@@ -28,8 +31,10 @@ contains
         select case (trim(lattice_type))
             case ('square')
                 call initialize_square_lattice()
+                is_square_lattice = .true.
             case ('hexagonal')
                 call initialize_hexagonal_lattice()
+                is_square_lattice = .false.
             case default
                 print *, 'Error: Unknown lattice type: ', trim(lattice_type)
                 stop

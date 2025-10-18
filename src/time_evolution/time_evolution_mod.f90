@@ -201,11 +201,13 @@ contains
         allocate(staple%elements(num_colors, num_colors))
         
         ! Sum over staples in all orthogonal directions
+        ! Note: Staple computation is only valid for square/hypercubic lattices
+        ! where neighbors are organized as forward/backward pairs
         do nu = 1, spacetime_dim
             if (nu == mu) cycle
             
-            ! Check if lattice has forward/backward neighbors (square lattice)
-            if (size(lattice(site)%neighbors, 2) >= 2) then
+            ! Check if this is a square lattice where staples are well-defined
+            if (is_square_lattice) then
                 ! Forward staple
                 site_plus_mu = lattice(site)%neighbors(mu, 1)
                 
