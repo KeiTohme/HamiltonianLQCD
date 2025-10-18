@@ -1,0 +1,45 @@
+! ===================================================================
+! Lattice QCD Hamiltonian Formalism - Input Parameters
+! ===================================================================
+
+! --- Lattice Configuration ---
+&lattice_config
+  lattice_type = 'square'           ! 'square' or 'hexagonal'
+  d_euclid = 4                      ! Euclidean spacetime dimension
+  nsize = 8, 8, 8, 8               ! Lattice size in each dimension
+/
+
+! --- Physical Parameters ---
+&physical_params
+  gauge_coupling = 1.0              ! Gauge coupling constant g
+  fermion_mass = 0.1                ! Fermion mass m
+  n_colors = 3                      ! Number of colors Nc (for SU(Nc))
+  beta = 6.0                        ! Inverse coupling β = 2Nc/g²
+/
+
+! --- Fermion Configuration ---
+&fermion_config
+  fermion_type = 'wilson'           ! 'wilson' or 'staggered'
+  n_flavors = 2                     ! Number of flavors
+/
+
+! --- Time Evolution Parameters ---
+&time_evolution
+  time_step = 0.01                  ! Time step dt
+  n_steps = 1000                    ! Number of time steps
+  output_interval = 10              ! Output interval
+/
+
+! --- Parallelization Options ---
+&parallel_config
+  use_openmp = .true.               ! Use OpenMP parallelization
+  use_mpi = .false.                 ! Use MPI parallelization
+  n_threads = 4                     ! Number of OpenMP threads
+/
+
+! --- Computational Method ---
+&computation_method
+  method = 'classical'              ! 'classical', 'tensor_network', or 'quantum'
+  tensor_chi = 50                   ! Bond dimension for tensor network
+  quantum_backend = 'qiskit'        ! Quantum computing backend
+/
