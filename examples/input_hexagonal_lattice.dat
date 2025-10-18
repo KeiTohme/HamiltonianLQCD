@@ -1,0 +1,28 @@
+# ==============================================================================
+# Input file for Hamiltonian LQCD - Hexagonal Lattice Example
+# ==============================================================================
+
+# Physical parameters
+gauge_coupling = 1.0        # Gauge coupling constant g
+fermion_mass = 0.1          # Fermion mass m
+num_colors = 3              # Number of colors Nc (SU(3) for QCD)
+
+# Lattice parameters
+spacetime_dim = 2           # Space-time dimension (hexagonal lattice is 2D)
+lattice_size = 10,10        # Lattice size Nsize for each dimension
+lattice_type = hexagonal    # Lattice type: 'square' or 'hexagonal'
+
+# Fermion type
+fermion_type = staggered    # Fermion type: 'wilson' or 'staggered'
+
+# Time evolution parameters
+time_step = 0.01            # Time step dt
+num_time_steps = 100        # Number of time steps
+
+# Parallelization options
+use_openmp = true           # Use OpenMP parallelization
+use_mpi = false             # Use MPI parallelization
+num_threads = 4             # Number of OpenMP threads
+
+# Computational method
+comp_method = standard      # Method: 'standard', 'tensor_network', or 'quantum'
