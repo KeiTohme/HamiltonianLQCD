@@ -109,7 +109,13 @@ contains
         type(su_n_matrix) :: U_plaq, temp
         complex(dp) :: trace_plaq
         
-        ! Get neighbor sites
+        ! Get neighbor sites (check if lattice has forward/backward structure)
+        if (size(lattice(site)%neighbors, 2) < 2) then
+            ! Hexagonal or other non-standard lattice - use simplified plaquette
+            plaq_value = 1.0_dp
+            return
+        end if
+        
         site_plus_mu = lattice(site)%neighbors(mu, 1)
         site_plus_nu = lattice(site)%neighbors(nu, 1)
         

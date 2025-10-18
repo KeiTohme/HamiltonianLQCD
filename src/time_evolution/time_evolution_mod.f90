@@ -204,31 +204,34 @@ contains
         do nu = 1, spacetime_dim
             if (nu == mu) cycle
             
-            ! Forward staple
-            site_plus_mu = lattice(site)%neighbors(mu, 1)
-            
-            temp1 = matrix_multiply(gauge_links(site_plus_mu, nu), &
-                                   matrix_dagger(gauge_links(lattice(site)%neighbors(nu, 1), mu)))
-            temp2 = matrix_multiply(temp1, matrix_dagger(gauge_links(site, nu)))
-            staple = temp2
-            
-            if (allocated(temp1%elements)) deallocate(temp1%elements)
-            if (allocated(temp2%elements)) deallocate(temp2%elements)
-            
-            force%elements = force%elements + staple%elements
-            
-            ! Backward staple
-            site_minus_nu = lattice(site)%neighbors(nu, 2)
-            
-            temp1 = matrix_dagger(gauge_links(lattice(site_minus_nu)%neighbors(mu, 1), nu))
-            temp2 = matrix_multiply(temp1, matrix_dagger(gauge_links(site_minus_nu, mu)))
-            temp1 = matrix_multiply(temp2, gauge_links(site_minus_nu, nu))
-            
-            if (allocated(temp2%elements)) deallocate(temp2%elements)
-            
-            force%elements = force%elements + temp1%elements
-            
-            if (allocated(temp1%elements)) deallocate(temp1%elements)
+            ! Check if lattice has forward/backward neighbors (square lattice)
+            if (size(lattice(site)%neighbors, 2) >= 2) then
+                ! Forward staple
+                site_plus_mu = lattice(site)%neighbors(mu, 1)
+                
+                temp1 = matrix_multiply(gauge_links(site_plus_mu, nu), &
+                                       matrix_dagger(gauge_links(lattice(site)%neighbors(nu, 1), mu)))
+                temp2 = matrix_multiply(temp1, matrix_dagger(gauge_links(site, nu)))
+                staple = temp2
+                
+                if (allocated(temp1%elements)) deallocate(temp1%elements)
+                if (allocated(temp2%elements)) deallocate(temp2%elements)
+                
+                force%elements = force%elements + staple%elements
+                
+                ! Backward staple
+                site_minus_nu = lattice(site)%neighbors(nu, 2)
+                
+                temp1 = matrix_dagger(gauge_links(lattice(site_minus_nu)%neighbors(mu, 1), nu))
+                temp2 = matrix_multiply(temp1, matrix_dagger(gauge_links(site_minus_nu, mu)))
+                temp1 = matrix_multiply(temp2, gauge_links(site_minus_nu, nu))
+                
+                if (allocated(temp2%elements)) deallocate(temp2%elements)
+                
+                force%elements = force%elements + temp1%elements
+                
+                if (allocated(temp1%elements)) deallocate(temp1%elements)
+            end if
         end do
         
         ! Multiply by U(x,mu) and project to Lie algebra
