@@ -1,0 +1,34 @@
+# Lattice QCD Hamiltonian Parameters
+# Lines starting with # are comments
+
+# Physical parameters
+g = 1.0                    # Gauge coupling constant
+m_fermion = 0.1           # Fermion mass
+Nc = 3                    # Number of colors (SU(3))
+D_euclid = 3              # Euclidean spacetime dimension
+
+# Lattice parameters
+Nsize = 8 8 8             # Lattice size in each dimension
+lattice_type = square     # Options: square, hexagonal
+fermion_type = wilson     # Options: wilson, staggered
+
+# Time evolution parameters
+dt = 0.01                 # Time step
+n_steps = 1000           # Number of time steps
+measure_interval = 10     # Measurement interval
+
+# Parallelization options
+use_mpi = false          # Use MPI parallelization
+use_openmp = true        # Use OpenMP parallelization
+n_threads = 4            # Number of OpenMP threads
+
+# Advanced options
+use_tensor_network = false      # Use tensor network methods
+use_quantum_computer = false    # Use quantum computer simulation
+tn_backend = none              # Tensor network backend
+qc_backend = none              # Quantum computer backend
+
+# Output options
+output_dir = ./output          # Output directory
+save_configurations = true     # Save gauge/fermion configurations
+save_interval = 100           # Configuration save interval
