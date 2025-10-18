@@ -98,6 +98,7 @@ contains
             print *, 'Warning: Hexagonal lattice currently only supports 2D'
             print *, 'Falling back to square lattice'
             call initialize_square_lattice()
+            is_square_lattice = .true.  ! Update flag since we're using square lattice
             return
         end if
         
