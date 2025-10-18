@@ -1,0 +1,46 @@
+! ===================================================================
+! Small Test Configuration for Lattice QCD
+! Quick test run with small lattice size
+! ===================================================================
+
+! --- Lattice Configuration ---
+&lattice_config
+  lattice_type = 'square'           ! Square lattice
+  d_euclid = 4                      ! 4D spacetime
+  nsize = 4, 4, 4, 4               ! Small 4^4 lattice
+/
+
+! --- Physical Parameters ---
+&physical_params
+  gauge_coupling = 1.0              ! g = 1.0
+  fermion_mass = 0.1                ! m = 0.1
+  n_colors = 2                      ! SU(2) for faster testing
+  beta = 4.0                        ! β = 2Nc/g² = 4.0
+/
+
+! --- Fermion Configuration ---
+&fermion_config
+  fermion_type = 'wilson'           ! Wilson fermions
+  n_flavors = 1                     ! Single flavor
+/
+
+! --- Time Evolution Parameters ---
+&time_evolution
+  time_step = 0.01                  ! Small time step
+  n_steps = 100                     ! Short run
+  output_interval = 10              ! Output every 10 steps
+/
+
+! --- Parallelization Options ---
+&parallel_config
+  use_openmp = .true.               ! Use OpenMP
+  use_mpi = .false.                 ! No MPI for small test
+  n_threads = 2                     ! 2 threads
+/
+
+! --- Computational Method ---
+&computation_method
+  method = 'classical'              ! Classical evolution
+  tensor_chi = 10                   ! Not used in classical
+  quantum_backend = 'qiskit'        ! Not used in classical
+/

@@ -1,0 +1,46 @@
+! ===================================================================
+! Hexagonal Lattice Test Configuration
+! 2D hexagonal lattice for testing alternative geometries
+! ===================================================================
+
+! --- Lattice Configuration ---
+&lattice_config
+  lattice_type = 'hexagonal'        ! Hexagonal lattice
+  d_euclid = 2                      ! 2D (spatial only)
+  nsize = 10, 10                    ! 10x10 hexagonal lattice
+/
+
+! --- Physical Parameters ---
+&physical_params
+  gauge_coupling = 1.0
+  fermion_mass = 0.2
+  n_colors = 2                      ! SU(2)
+  beta = 4.0
+/
+
+! --- Fermion Configuration ---
+&fermion_config
+  fermion_type = 'staggered'
+  n_flavors = 1
+/
+
+! --- Time Evolution Parameters ---
+&time_evolution
+  time_step = 0.01
+  n_steps = 500
+  output_interval = 25
+/
+
+! --- Parallelization Options ---
+&parallel_config
+  use_openmp = .true.
+  use_mpi = .false.
+  n_threads = 2
+/
+
+! --- Computational Method ---
+&computation_method
+  method = 'classical'
+  tensor_chi = 20
+  quantum_backend = 'qiskit'
+/

@@ -1,0 +1,46 @@
+! ===================================================================
+! SU(3) Gauge Theory Test Configuration
+! Standard QCD with 3 colors
+! ===================================================================
+
+! --- Lattice Configuration ---
+&lattice_config
+  lattice_type = 'square'
+  d_euclid = 4
+  nsize = 8, 8, 8, 8               ! 8^4 lattice
+/
+
+! --- Physical Parameters ---
+&physical_params
+  gauge_coupling = 1.0
+  fermion_mass = 0.1
+  n_colors = 3                      ! SU(3) QCD
+  beta = 6.0                        ! Standard β value
+/
+
+! --- Fermion Configuration ---
+&fermion_config
+  fermion_type = 'staggered'        ! Staggered fermions
+  n_flavors = 2                     ! Up and down quarks
+/
+
+! --- Time Evolution Parameters ---
+&time_evolution
+  time_step = 0.005
+  n_steps = 1000
+  output_interval = 50
+/
+
+! --- Parallelization Options ---
+&parallel_config
+  use_openmp = .true.
+  use_mpi = .false.
+  n_threads = 4
+/
+
+! --- Computational Method ---
+&computation_method
+  method = 'classical'
+  tensor_chi = 50
+  quantum_backend = 'qiskit'
+/
