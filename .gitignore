@@ -1,0 +1,5 @@
+build/
+output/
+export/
+*.mod
+*.o

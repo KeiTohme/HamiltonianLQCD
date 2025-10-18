@@ -1,0 +1,15 @@
+&simulation
+  g_in = 1.0,
+  m_in = 0.1,
+  D_euclid_in = 2,
+  Nc_in = 2,
+  steps_in = 20,
+  dt_in = 0.02,
+  lattice_type_in = 'square',
+  Nsize_in = 8, 8, 1, 1, 1, 1,
+  enable_mpi_in = .false.,
+  enable_openmp_in = .false.,
+  gauge_seed_in = 42,
+  fermion_type_in = 'Wilson',
+  save_interval_in = 5
+/
