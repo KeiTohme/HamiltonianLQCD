@@ -1,0 +1,28 @@
+# ==============================================================================
+# Input file for Hamiltonian LQCD - Small Test Case
+# ==============================================================================
+
+# Physical parameters
+gauge_coupling = 1.0        # Gauge coupling constant g
+fermion_mass = 0.1          # Fermion mass m
+num_colors = 2              # Number of colors Nc (SU(2) for testing)
+
+# Lattice parameters
+spacetime_dim = 2           # Space-time dimension (2D for quick test)
+lattice_size = 4,4          # Small lattice size for quick test
+lattice_type = square       # Lattice type: 'square' or 'hexagonal'
+
+# Fermion type
+fermion_type = wilson       # Fermion type: 'wilson' or 'staggered'
+
+# Time evolution parameters
+time_step = 0.05            # Time step dt
+num_time_steps = 20         # Number of time steps (small for quick test)
+
+# Parallelization options
+use_openmp = false          # Use OpenMP parallelization
+use_mpi = false             # Use MPI parallelization
+num_threads = 1             # Number of OpenMP threads
+
+# Computational method
+comp_method = standard      # Method: 'standard', 'tensor_network', or 'quantum'
